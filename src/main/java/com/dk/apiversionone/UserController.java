@@ -34,3 +34,15 @@ public class UserController {
     }
 
 }
+
+
+/*
+
+    git init
+    git add .
+    git commit -m "first commit"
+    git branch -M main
+    git remote add origin https://github.com/danmigwi24/dk-springboot.git
+    git push -u origin main
+
+ */
