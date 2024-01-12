@@ -1,4 +1,4 @@
-package com.dk.apiversionone;
+package com.dk.apiversionone.user.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

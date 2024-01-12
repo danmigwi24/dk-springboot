@@ -1,5 +1,6 @@
-package com.dk.apiversionone;
+package com.dk.apiversionone.user;
 
+import com.dk.apiversionone.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,8 +10,12 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    private  UserRepository userRepository;
+    private UserRepository userRepository;
 
+    @GetMapping("/")
+    public String startTest(){
+        return "Hi";
+    }
     @GetMapping("/hello")
     public String hello(){
         return "Hello World";
@@ -57,4 +62,7 @@ public class UserController {
     git remote add origin https://github.com/danmigwi24/dk-springboot.git
     git push -u origin main
 
+     git add .
+     git commit -m "commit all changes"
+     git push
  */
