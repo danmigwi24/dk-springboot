@@ -21,33 +21,21 @@ import java.util.List;
 @RequestMapping(path = "/auth")
 public class AuthSecurityController {
 
-    private  final JwtIssuer jwtIssuer;
-
-    private final AuthenticationManager authenticationManager;
-
+    private final AuthService authService;
 
     @GetMapping("/")
     public String home(){
         return ("Welcome");
     }
 
-    @PostMapping("/fakelogin")
-    public LoginResponse fakeLogin(@RequestBody @Validated LoginRequest request){
-        var token = jwtIssuer.issue(1L,request.getEmail(), List.of("USER"));
-        return LoginResponse.builder().accessToken(token).build();
-    }
+//    @PostMapping("/fakelogin")
+//    public LoginResponse fakeLogin(@RequestBody @Validated LoginRequest request){
+//        return authService.fakeLogin(request);
+//    }
 
     @PostMapping("/login")
     public LoginResponse login(@RequestBody @Validated LoginRequest request){
-        var authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword())
-        );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        var principals = (UserPrincipal) authentication.getPrincipal();
-
-        var roles = principals.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList();
-        var token = jwtIssuer.issue(principals.getUserId(),principals.getEmail(), roles);
-        return LoginResponse.builder().accessToken(token).build();
+        return authService.login(request);
     }
 
     @GetMapping("/user")
