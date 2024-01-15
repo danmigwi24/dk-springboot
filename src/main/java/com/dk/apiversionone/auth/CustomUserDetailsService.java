@@ -19,7 +19,6 @@ public class CustomUserDetailsService  implements UserDetailsService {
 
     //private  final DataSourceService dataSourceService;
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         var user = findByEmail(username).orElseThrow();
